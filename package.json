@@ -20,8 +20,18 @@
     "url": "https://github.com/minhur/bootstrap-toggle/issues"
   },
   "devDependencies": {
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-cssmin": "^0.10.0",
-    "grunt-contrib-uglify": "^0.6.0"
+    "jspm": "^0.16.14"
+  },
+  "jspm": {
+    "dependencies": {
+      "css": "npm:jspm-loader-css-modules@^1.0.0",
+      "react": "npm:react@^0.14.2",
+      "react-dom": "npm:react-dom@^0.14.2"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
+    }
   }
 }
