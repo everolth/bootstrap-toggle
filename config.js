@@ -16,6 +16,7 @@ System.config({
   map: {
     "babel": "npm:babel-core@5.8.33",
     "babel-runtime": "npm:babel-runtime@5.8.29",
+    "classnames": "npm:classnames@2.2.0",
     "core-js": "npm:core-js@1.2.5",
     "css": "npm:jspm-loader-css-modules@1.0.0",
     "react": "npm:react@0.14.2",
@@ -64,6 +65,11 @@ System.config({
       "base64-js": "npm:base64-js@0.0.8",
       "ieee754": "npm:ieee754@1.1.6",
       "is-array": "npm:is-array@1.0.1"
+    },
+    "npm:classnames@2.2.0": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
     "npm:core-js@1.2.5": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",

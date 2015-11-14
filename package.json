@@ -24,6 +24,7 @@
   },
   "jspm": {
     "dependencies": {
+      "classnames": "npm:classnames@^2.2.0",
       "css": "npm:jspm-loader-css-modules@^1.0.0",
       "react": "npm:react@^0.14.2",
       "react-dom": "npm:react-dom@^0.14.2"

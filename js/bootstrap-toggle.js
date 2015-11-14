@@ -78,7 +78,6 @@ export default React.createClass({
     return (
       <div className={`${styles.toggle} btn ${size} ${wrapper_stype} ${this.props.style}`} 
         data-toggle="toggle" disabled={this.props.disabled} onClick={this.handleClick} style={toggle_styles}>
-        <input type="checkbox" checked={this.state.checked} data-toggle="toggle" disabled={this.props.disabled}/>
         <div className={`${styles['toggle-group']}`}>
           <label className={`btn btn-${this.props.onstyle} ${size} ${styles['toggle-on']}`} style={toggle_on_off_styles}>
             {this.props.on}
