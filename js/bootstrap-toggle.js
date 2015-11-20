@@ -14,6 +14,26 @@
 
 import React from 'react';
 import styles from '../css/bootstrap-toggle.css!';
+import classNames from 'classnames/bind';
+import _ from 'lodash';
+
+let cx = classNames.bind(styles);
+
+let calculateSizing = function () {
+  if (!this.state.height) {
+    this.setState({
+      width: Math.round(Math.max(this.refs.toggleOn.getBoundingClientRect().width,
+                  this.refs.toggleOff.getBoundingClientRect().width)+
+        (this.refs.toggleHandle.offsetWidth/2))
+    });
+  }
+  if (!this.state.width) {
+    this.setState({
+      height: Math.max(this.refs.toggleOn.getBoundingClientRect().height,
+                 this.refs.toggleOff.getBoundingClientRect().height)
+    });
+  }
+};
 
 //NOTE $element is the checkbox $toggle is the containing div
 export default React.createClass({
@@ -22,10 +42,11 @@ export default React.createClass({
     return {
       on: 'On',
       off: 'Off',
-      onstyle: 'primary',
-      offstyle: 'default',
+      onstyle: 'btn-primary',
+      offstyle: 'btn-default',
       size: 'normal',
-      style: '',
+      class: '',
+      style: {},
       width: null,
       height: null
     }
@@ -42,50 +63,81 @@ export default React.createClass({
 
   getInitialState: function () {
     return {
-      checked: this.props.checked
+      checked: this.props.checked,
+      height: this.props.height,
+      width: this.props.width
     }
   },
 
+  componentDidMount: calculateSizing,
+  componentDidUpdate: calculateSizing,
+  componentWillReceiveProps: function (nextProps) {
+    if (nextProps.on !== this.props.on || nextProps.off !== this.props.off) {
+      this.setState({
+        width: null,
+        height: null
+      });
+    }
+  },
 	render: function () {
 
-    let size = this.props.size === 'large' ? 'btn-lg'
-      : this.props.size === 'small' ? 'btn-sm'
-      : this.props.size === 'mini' ? 'btn-xs'
-      : '';
-
-    let wrapper_stype = this.state.checked ? 
-      `btn-${this.props.onstyle}` : `btn-${this.props.offstyle} ${styles.off}`;
-
-    let width = this.props.width || null;
-    //TODO how do I get around the fact that I want to know the width of parts of the component
-    //Math.max($toggleOn.width(), $toggleOff.width())+($toggleHandle.outerWidth()/2);
-    let height = this.props.height || null;
-    //TODO how I get around the fact that I want to know the height of parts of the component
-    //Math.max($toggleOn.height(), $toggleOff.height())
-    //
+    let width = this.state.width;
+    let height = this.state.height;
     let toggle_styles = {};
     let toggle_on_off_styles = {};
 
     if (width) {
       toggle_styles.width = width;
     }
-    //TODO $toggleOn.height() && $toggleOff.height() were used to do this for on/off
+
     if (height) {
       toggle_styles.height = height;
       toggle_on_off_styles['line-height'] = `${height} px`;
     }
+    
+    let baseObj = {
+       btn: true,
+      'btn-lg': this.props.size === 'large' ,
+      'btn-sm': this.props.size === 'small',
+      'btn-xs': this.props.size === 'mini'
+    };
+    let wrapperClass = cx({
+      toggle: true,
+      [this.props.onstyle] : this.state.checked,
+      [this.props.offstyle] : !this.state.checked,
+      [this.props.class]: true,
+      off: !this.state.checked
+    },baseObj);
+
+    let labelOnClass = cx({
+      [this.props.onstyle]: true,
+      'toggle-on': true
+    },baseObj);
+
+    let labelOffClass = cx({
+      [this.props.offstyle]: true,
+      active: true,
+      'toggle-off': true
+    },baseObj);
+
+    let spanClass = cx({
+      'toggle-handle': true,
+      'btn-default': true
+    },baseObj);
+
+    _.assign(toggle_styles,this.props.style);
 
     return (
-      <div className={`${styles.toggle} btn ${size} ${wrapper_stype} ${this.props.style}`} 
+       <div className={wrapperClass} 
         data-toggle="toggle" disabled={this.props.disabled} onClick={this.handleClick} style={toggle_styles}>
-        <div className={`${styles['toggle-group']}`}>
-          <label className={`btn btn-${this.props.onstyle} ${size} ${styles['toggle-on']}`} style={toggle_on_off_styles}>
+        <div className={styles['toggle-group']}>
+          <label ref='toggleOn' className={labelOnClass} style={toggle_on_off_styles}>
             {this.props.on}
           </label>
-          <label className={`btn btn-${this.props.offstyle} ${size} active ${styles['toggle-off']}`}>
+          <label ref='toggleOff' className={labelOffClass}>
             {this.props.off}
           </label>
-          <span className={`${styles['toggle-handle']} btn btn-default ${size}`}/>
+          <span ref='toggleHandle' className={spanClass}/>
         </div>
       </div>
     );

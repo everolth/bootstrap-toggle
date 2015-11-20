@@ -19,6 +19,7 @@ System.config({
     "classnames": "npm:classnames@2.2.0",
     "core-js": "npm:core-js@1.2.5",
     "css": "npm:jspm-loader-css-modules@1.0.0",
+    "lodash": "npm:lodash@3.10.1",
     "react": "npm:react@0.14.2",
     "react-dom": "npm:react-dom@0.14.2",
     "github:jspm/nodelibs-assert@0.1.0": {
@@ -148,6 +149,9 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "source-map": "npm:source-map@0.1.31"
+    },
+    "npm:lodash@3.10.1": {
+      "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:loose-envify@1.1.0": {
       "js-tokens": "npm:js-tokens@1.0.2",

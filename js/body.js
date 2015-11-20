@@ -36,17 +36,16 @@ export default React.createClass({
             <h3>Stacked checkboxes</h3>
             <p>Refer to Bootstrap <a href="http://getbootstrap.com/css/#forms-controls" target="_blank">Form Controls</a> documentation to create stacked checkboxes. Simply add <code>data-toggle="toggle"</code> to convert checkboxes into toggles.</p>
             <div className="example">
-              <div className="checkbox">
+              <div>
                 <label>
                   <Toggle/>
-                  Option one is enabled
+                  <span style={{'font-weight': 'normal'}}> Option one is enabled</span>
                 </label>
               </div>
-              <div className="checkbox disabled">
+              <div>
                 <label>
-                  <Toggle/>
-                  Option two is disabled
-                  
+                  <Toggle disabled={true}/>
+                  <span style={{'font-weight': 'normal'}}> Option two is disabled</span>
                 </label>
               </div>
             </div>
@@ -79,7 +78,7 @@ export default React.createClass({
             <h3>Options</h3>
             <p>Options can be passed via data attributes or JavaScript. For data attributes, append the option name to <code>data-</code>, as in <code>data-on="Enabled"</code>.</p>
             <div className="example">
-              <Toggle on="Enabled" off="Disabled"/>
+              <Toggle on="Enabled" off="Disabled" style={{marginRight: '10px'}}/>
               <Toggle on="Enabled" off="Disabled"/>
             </div>
             <div className="table-responsive">
