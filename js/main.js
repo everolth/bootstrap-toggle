@@ -5,6 +5,6 @@ import Header from './header.js';
 export default (
   <div>
     {Header}
-    <Body/>
+    {Body}
   </div>
 );

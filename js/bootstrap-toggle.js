@@ -35,6 +35,14 @@ let calculateSizing = function () {
   }
 };
 
+let getChanged = (oldObj, newObj, ...props) => _.transform(props, 
+      (result,prop) => {
+        if(oldObj[prop] !== newObj[prop]) {
+          result[prop] = newObj[prop]
+        }
+      }
+  ,{});
+
 //NOTE $element is the checkbox $toggle is the containing div
 export default React.createClass({
 
@@ -45,10 +53,12 @@ export default React.createClass({
       onstyle: 'btn-primary',
       offstyle: 'btn-default',
       size: 'normal',
-      class: '',
+      additionalClass: '',
       style: {},
       width: null,
-      height: null
+      height: null,
+      checked: true,
+      disabled: false
     }
   },
 
@@ -72,12 +82,9 @@ export default React.createClass({
   componentDidMount: calculateSizing,
   componentDidUpdate: calculateSizing,
   componentWillReceiveProps: function (nextProps) {
-    if (nextProps.on !== this.props.on || nextProps.off !== this.props.off) {
-      this.setState({
-        width: null,
-        height: null
-      });
-    }
+    let state = getChanged(this.props,nextProps,'height','width');
+    _.assign(state,getChanged(this.state, nextProps, 'checked'));
+    this.setState(state);
   },
 	render: function () {
 
@@ -105,7 +112,7 @@ export default React.createClass({
       toggle: true,
       [this.props.onstyle] : this.state.checked,
       [this.props.offstyle] : !this.state.checked,
-      [this.props.class]: true,
+      [this.props.additionalClass]: true,
       off: !this.state.checked
     },baseObj);
 
