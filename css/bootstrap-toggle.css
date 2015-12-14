@@ -11,9 +11,6 @@
 	position: relative;
 	overflow: hidden;
 }
-.toggle input[type="checkbox"] {
-	display: none;
-}
 .toggle-group {
 	position: absolute;
 	width: 200%;

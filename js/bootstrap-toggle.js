@@ -14,26 +14,10 @@
 
 import React from 'react';
 import styles from '../css/bootstrap-toggle.css!';
-import classNames from 'classnames/bind';
+import classNames from 'classnames';
 import _ from 'lodash';
-
-let cx = classNames.bind(styles);
-
-let calculateSizing = function () {
-  if (!this.state.height) {
-    this.setState({
-      width: Math.round(Math.max(this.refs.toggleOn.getBoundingClientRect().width,
-                  this.refs.toggleOff.getBoundingClientRect().width)+
-        (this.refs.toggleHandle.offsetWidth/2))
-    });
-  }
-  if (!this.state.width) {
-    this.setState({
-      height: Math.max(this.refs.toggleOn.getBoundingClientRect().height,
-                 this.refs.toggleOff.getBoundingClientRect().height)
-    });
-  }
-};
+// hack assume jquery available globally on the window object
+let $ = window.$;
 
 let getChanged = (oldObj, newObj, ...props) => _.transform(props, 
       (result,prop) => {
@@ -50,15 +34,16 @@ export default React.createClass({
     return {
       on: 'On',
       off: 'Off',
-      onstyle: 'btn-primary',
-      offstyle: 'btn-default',
+      onstyle: 'primary',
+      offstyle: 'default',
       size: 'normal',
       additionalClass: '',
-      style: {},
+      styleWrapper: {},
       width: null,
       height: null,
       checked: true,
-      disabled: false
+      disabled: false,
+      lineHeight: null
     }
   },
 
@@ -73,23 +58,47 @@ export default React.createClass({
 
   getInitialState: function () {
     return {
-      checked: this.props.checked,
-      height: this.props.height,
-      width: this.props.width
+      checked: this.props.checked
     }
   },
 
-  componentDidMount: calculateSizing,
-  componentDidUpdate: calculateSizing,
+  calculateSizing: function () {
+    let tgOn = $(this.refs.toggleOn);
+    let tgOff =  $(this.refs.toggleOff);
+    if (!this.state.width) {
+      this.setState({
+        width: Math.round(Math.max(tgOn.outerWidth(),
+                    tgOff.outerWidth())+
+          ($(this.refs.toggleHandle).outerWidth()/2))
+      });
+    }
+    if (!this.state.height) {
+      this.setState({
+        height: Math.max(tgOn.outerHeight(),
+                   tgOff.outerHeight())
+      });
+    }
+    if (this.props.height && !this.state.lineHeight) {
+      this.setState({
+        lineHeight: this.props.height - (tgOn.outerHeight() - tgOn.height())
+      });
+    }
+  },
+  componentDidMount: function () {this.calculateSizing()},
+  componentDidUpdate: function () {this.calculateSizing()},
   componentWillReceiveProps: function (nextProps) {
     let state = getChanged(this.props,nextProps,'height','width');
     _.assign(state,getChanged(this.state, nextProps, 'checked'));
+    if (!nextProps.height || state.height) {
+      state.lineHeight = null;
+    }
     this.setState(state);
   },
 	render: function () {
 
-    let width = this.state.width;
-    let height = this.state.height;
+    let width = this.props.width || this.state.width;
+    let height = this.props.height || this.state.height;
+    let lineHeight = this.props.height && this.state.lineHeight;
     let toggle_styles = {};
     let toggle_on_off_styles = {};
 
@@ -99,7 +108,9 @@ export default React.createClass({
 
     if (height) {
       toggle_styles.height = height;
-      toggle_on_off_styles['line-height'] = `${height} px`;
+      if (lineHeight) {
+        toggle_on_off_styles.lineHeight = `${lineHeight}px`;
+      }
     }
     
     let baseObj = {
@@ -108,43 +119,59 @@ export default React.createClass({
       'btn-sm': this.props.size === 'small',
       'btn-xs': this.props.size === 'mini'
     };
-    let wrapperClass = cx({
-      toggle: true,
-      [this.props.onstyle] : this.state.checked,
-      [this.props.offstyle] : !this.state.checked,
+    let onOffObj = null;
+    if (this.state.checked) {
+      onOffObj = {
+        [`btn-${this.props.onstyle}`] : true
+      }
+    } else {
+      onOffObj = {
+        [`btn-${this.props.offstyle}`] : true
+      }
+    }
+    let wrapperClass = classNames({
+      [styles.toggle]: true,
       [this.props.additionalClass]: true,
-      off: !this.state.checked
+      [styles.off]: !this.state.checked
+    },baseObj,onOffObj);
+
+    let labelOnClass = classNames({
+      [`btn-${this.props.onstyle}`]: true,
+      [styles['toggle-on']]: true
     },baseObj);
 
-    let labelOnClass = cx({
-      [this.props.onstyle]: true,
-      'toggle-on': true
-    },baseObj);
-
-    let labelOffClass = cx({
-      [this.props.offstyle]: true,
+    let labelOffClass = classNames({
+      [`btn-${this.props.offstyle}`]: true,
       active: true,
-      'toggle-off': true
+      [styles['toggle-off']]: true
     },baseObj);
 
-    let spanClass = cx({
-      'toggle-handle': true,
+    let spanClass = classNames({
+      [styles['toggle-handle']]: true,
       'btn-default': true
     },baseObj);
 
+    let toggle_on_styles = {};
+    let toggle_off_styles = {};
+    let toggle_handle_styles = {};
+    let toggle_group_styles = this.props.groupStyle || {};
+
     _.assign(toggle_styles,this.props.style);
+    _.assign(toggle_on_styles, this.props.onHandleStyle,toggle_on_off_styles);
+    _.assign(toggle_off_styles, this.props.offHandleStyle,toggle_on_off_styles);
+    _.assign(toggle_handle_styles, this.props.handleStyle);
 
     return (
        <div className={wrapperClass} 
-        data-toggle="toggle" disabled={this.props.disabled} onClick={this.handleClick} style={toggle_styles}>
-        <div className={styles['toggle-group']}>
-          <label ref='toggleOn' className={labelOnClass} style={toggle_on_off_styles}>
+        disabled={this.props.disabled} onClick={this.handleClick} style={toggle_styles}>
+        <div className={styles['toggle-group']} style={toggle_group_styles}>
+          <label ref='toggleOn' className={labelOnClass} style={toggle_on_styles}>
             {this.props.on}
           </label>
-          <label ref='toggleOff' className={labelOffClass}>
+          <label ref='toggleOff' className={labelOffClass} style={toggle_off_styles}>
             {this.props.off}
           </label>
-          <span ref='toggleHandle' className={spanClass}/>
+          <span ref='toggleHandle' className={spanClass} style={toggle_handle_styles}/>
         </div>
       </div>
     );

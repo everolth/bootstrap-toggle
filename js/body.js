@@ -166,30 +166,6 @@ export default (
         <Example/>
       </div>
 
-
-      <div id="events" className="container">
-        <h2>Events</h2>
-        <hr/>
-
-        <h3>Event Propagation</h3>
-        <p><span className="label label-primary">Note</span> All events are propagated to and from input element to the toggle. </p>
-        <p>You should listen to events from the <code>&lt;input type="checkbox"></code> directly rather than look for custom events.</p>
-        <div className="example">
-          <input id="toggle-event" type="checkbox" data-toggle="toggle"/>
-          <div id="console-event"></div>
-        </div>
-
-        <h3>API vs Input</h3>
-        <p>This also means that using the API or Input to trigger events will work both ways.</p>
-        <div className="example">
-          <input id="toggle-trigger" type="checkbox" data-toggle="toggle"/>
-          <button className="btn btn-success" onclick="toggleOn()">On by API</button>
-          <button className="btn btn-danger" onclick="toggleOff()">Off by API</button>
-          <button className="btn btn-success" onclick="toggleOnByInput()">On by Input</button>
-          <button className="btn btn-danger" onclick="toggleOffByInput()">Off by Input</button>
-        </div>
-      </div>
-
       <div id="demos" className="container">
         <h2>Demos</h2>
         <hr/>
@@ -197,69 +173,69 @@ export default (
         <h3>Sizes</h3>
         <p>Bootstrap toggle is available in different sizes. Refer to Bootstrap <a href="http://getbootstrap.com/css/#buttons-sizes" target="_blank">Button Sizes</a> documentation for more information.</p>
         <div className="example">
-          <input type="checkbox" checked data-toggle="toggle" data-size="large"/>
-          <input type="checkbox" checked data-toggle="toggle" data-size="normal"/>
-          <input type="checkbox" checked data-toggle="toggle" data-size="small"/>
-          <input type="checkbox" checked data-toggle="toggle" data-size="mini"/>
+          <Toggle size="large" style={{marginRight: '10px'}}/>
+          <Toggle size="normal" style={{marginRight: '10px'}}/>
+          <Toggle size="small" style={{marginRight: '10px'}}/>
+          <Toggle size="mini" style={{marginRight: '10px'}}/>
         </div>
         
         <h3>Custom Sizes</h3>
         <p>Bootstrap toggle can handle custom sizes by <code>data-width</code> and <code>data-height</code> options.</p>
         <div className="example">
-          <input type="checkbox" checked data-toggle="toggle" data-width="100" data-height="75"/>
-          <input type="checkbox" checked data-toggle="toggle" data-height="75"/>
-          <input type="checkbox" checked data-toggle="toggle" data-width="100"/>
+          <Toggle width="100" height="75"/>
+          <Toggle height="75"/>
+          <Toggle width="100"/>
         </div>
 
         <h3>Colors</h3>
         <p>Bootstrap Toggle supports various colors. Refer to Bootstrap <a href="http://getbootstrap.com/css/#buttons-options" target="_blank">Button Options</a> documentation for more information.</p>
         <div className="example">
-          <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary"/>
-          <input type="checkbox" checked data-toggle="toggle" data-onstyle="success"/>
-          <input type="checkbox" checked data-toggle="toggle" data-onstyle="info"/>
-          <input type="checkbox" checked data-toggle="toggle" data-onstyle="warning"/>
-          <input type="checkbox" checked data-toggle="toggle" data-onstyle="danger"/>
-          <input type="checkbox" checked data-toggle="toggle" data-onstyle="default"/>
+          <Toggle onstyle="primary"/>
+          <Toggle onstyle="success"/>
+          <Toggle onstyle="info"/>
+          <Toggle onstyle="warning"/>
+          <Toggle onstyle="danger"/>
+          <Toggle onstyle="default"/>
         </div>
 
         <h3>Colors Mix</h3>
         <p>You can style on state as well as the off state.</p>
         <div className="example">
-          <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"/>
-          <input type="checkbox" checked data-toggle="toggle" data-onstyle="warning" data-offstyle="info"/>
+          <Toggle onstyle="success" offstyle="danger"/>
+          <Toggle onstyle="warning" offstyle="info"/>
         </div>
 
         <h3>Custom Style</h3>
         <p>Customized styles can be applied as easily.</p>
         <div className="example">
-          <input type="checkbox" checked data-toggle="toggle" data-style="ios"/>
-          <input type="checkbox" checked data-toggle="toggle" data-style="android" data-onstyle="info"/>
+          <Toggle style={{borderRadius: '20px'}} onHandleStyle={{borderRadius: '20px'}} offHandleStyle={{borderRadius: '20px'}} handleStyle={{borderRadius: '20px'}}/>
+          <Toggle style={{borderRadius: '0px'}} onHandleStyle={{borderRadius: '0px'}} offHandleStyle={{borderRadius: '0px'}} handleStyle={{borderRadius: '0px'}} onstyle="info"/>
         </div>
 
         <h3>Custom Text</h3>
         <p>The text can be changed easily with attributes or options.</p>
         <div className="example">
-          <input type="checkbox" checked data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger"/>
+          <Toggle on="Ready" off="Not Ready" onstyle="success" offstyle="danger"/>
         </div>
 
         <h3>Icons/Html Text</h3>
-        <p>You can easily add icons or images since html is supported for on/off text.</p>
+        <p>You can easily add icons or images since jsx is supported for on/off text.</p>
         <div className="example">
-          <input type="checkbox" checked data-toggle="toggle" data-on="<i className='fa fa-play'></i> Play" data-off="<i className='fa fa-pause'></i> Pause"/>
+          <Toggle on={<span><i className='fa fa-play'></i> Play</span>} off={<span><i className='fa fa-pause'></i> Pause</span>}/>
         </div>
 
         <h3>Multiple Lines of Text</h3>
         <p>Toggles with multiple lines will adjust its heights.</p>
         <div className="example">
-          <input type="checkbox" checked data-toggle="toggle" data-on="Hello<br/>World" data-off="Goodbye<br/>World"/>
+          <Toggle on={<span>Hello<br/>World</span>} off={<span>Goodbye<br/>World</span>}/>
         </div>
 
         <h3>Animation Speed</h3>
         <p>Transition speed can be easily controlled with css <code>transition</code> property on <code>.toggle-group</code>. You can also turn animation off completely.</p>
         <div className="example">
-          <input type="checkbox" checked data-toggle="toggle" data-style="slow"/>
-          <input type="checkbox" checked data-toggle="toggle" data-class="fast"/>
-          <input type="checkbox" checked data-toggle="toggle" data-style="quick"/>
+          <Toggle groupStyle={{ transition: 'left 0.7s', '-webkit-transition': 'left 0.7s' }}/>
+          <Toggle groupStyle={{ transition: 'left 0.1s', '-webkit-transition': 'left 0.1s' }}/>
+          <Toggle groupStyle={{ transition: 'none', '-webkit-transition': 'none' }}/>
         </div>
       </div>
     </main>
