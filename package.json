@@ -1,7 +1,7 @@
 {
   "name": "bootstrap-toggle-react",
   "description": "Bootstrap Toggle is a react component providing a toggle, based on www.bootstraptoggle.com",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "keywords": [
     "bootstrap",
     "toggle",
@@ -21,7 +21,7 @@
     "url": "https://github.com/everolth/bootstrap-toggle-react/issues"
   },
   "scripts": {
-    "prepublish": "./node_modules/.bin/babel js/bootstrap-toggle.js -o js/bootstrap-toggle.dist.js"
+    "prepublish": "babel js/bootstrap-toggle.js -o js/bootstrap-toggle.dist.js"
   },
   "main": "js/bootstrap-toggle.dist.js",
   "devDependencies": {
