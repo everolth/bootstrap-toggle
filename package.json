@@ -1,13 +1,14 @@
 {
-  "name": "bootstrap-toggle",
-  "description": "Bootstrap Toggle is a highly flexible Bootstrap plugin that converts checkboxes into toggles",
+  "name": "bootstrap-toggle-react",
+  "description": "Bootstrap Toggle is a react component providing a toggle, based on www.bootstraptoggle.com",
   "version": "2.2.1",
   "keywords": [
     "bootstrap",
     "toggle",
     "bootstrap-toggle",
     "switch",
-    "bootstrap-switch"
+    "bootstrap-switch",
+    "react"
   ],
   "homepage": "https://github.com/everolth/bootstrap-toggle-react",
   "repository": {
@@ -20,7 +21,7 @@
     "url": "https://github.com/everolth/bootstrap-toggle-react/issues"
   },
   "scripts": {
-    "build": "./node_modules/.bin/babel js/bootstrap-toggle.js -o js/bootstrap-toggle.dist.js"
+    "prepublish": "./node_modules/.bin/babel js/bootstrap-toggle.js -o js/bootstrap-toggle.dist.js"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",
