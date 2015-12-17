@@ -1,7 +1,7 @@
 {
   "name": "bootstrap-toggle-react",
   "description": "Bootstrap Toggle is a react component providing a toggle, based on www.bootstraptoggle.com",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "keywords": [
     "bootstrap",
     "toggle",
