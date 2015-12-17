@@ -239,20 +239,6 @@ export default (
         </div>
       </div>
     </main>
-    <footer>
-      <div className="container">
-        <p>
-          <img className="nyt-logo" src="doc/nyt.png"/>
-          <img className="nyt-logo" src="doc/nytdev.svg"/>
-        </p>
-        <p>Designed and built by <a href="https://github.com/minhur" target="_blank">Min Hur</a> for <a href="http://developers.nytimes.com" target="_blank">The New York Times Company</a></p>
-        <p>Latest Version: 2.2.0 | Code licensed under MIT</p>
-        <p>
-          <iframe src="https://mdo.github.io/github-buttons/github-btn.html?user=minhur&repo=bootstrap-toggle&type=watch&count=true" allowTransparency="true" frameBorder="0" scrolling="0" width="110" height="20"></iframe>
-          <iframe src="https://mdo.github.io/github-buttons/github-btn.html?user=minhur&repo=bootstrap-toggle&type=fork&count=true" allowTransparency="true" frameBorder="0" scrolling="0" width="95" height="20"></iframe>
-        </p>
-      </div>
-    </footer>
   </div>
 );
 

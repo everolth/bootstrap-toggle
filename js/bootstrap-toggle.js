@@ -13,7 +13,7 @@
 //getting this as a global import
 
 import React from 'react';
-import styles from '../css/bootstrap-toggle.css!';
+import styles from '../css/bootstrap-toggle.css';
 import classNames from 'classnames';
 import _ from 'lodash';
 // hack assume jquery available globally on the window object
