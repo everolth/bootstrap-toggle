@@ -72,13 +72,13 @@ export default React.createClass({
   },
 
   calculateSizing: function () {
-    let tgOn = $(this.refs.toggleOn);
-    let tgOff =  $(this.refs.toggleOff);
+    let tgOn = $(this.toggleOn);
+    let tgOff =  $(this.toggleOff);
     if (!this.state.width) {
       this.setState({
         width: Math.round(Math.max(tgOn.outerWidth(),
                     tgOff.outerWidth())+
-          ($(this.refs.toggleHandle).outerWidth()/2))
+          ($(this.toggleHandle).outerWidth()/2))
       });
     }
     if (!this.state.height) {
@@ -174,13 +174,13 @@ export default React.createClass({
        <div className={wrapperClass} 
         disabled={this.props.disabled} onClick={this.handleClick} style={toggle_styles}>
         <div className={styles['toggle-group']} style={toggle_group_styles}>
-          <label ref='toggleOn' className={labelOnClass} style={toggle_on_styles}>
+          <label ref={l => this.toggleOn = l} className={labelOnClass} style={toggle_on_styles}>
             {this.props.on}
           </label>
-          <label ref='toggleOff' className={labelOffClass} style={toggle_off_styles}>
+          <label ref={l => this.toggleOff = l} className={labelOffClass} style={toggle_off_styles}>
             {this.props.off}
           </label>
-          <span ref='toggleHandle' className={spanClass} style={toggle_handle_styles}/>
+          <span ref={s => this.toggleHandle = s} className={spanClass} style={toggle_handle_styles}/>
         </div>
       </div>
     );
