@@ -55,20 +55,20 @@
 	border-width: 0 1px;
 }
 
-.toggle.:global(btn) { min-width: 59px; min-height: 34px; }
-.toggle-on.:global(btn) { padding-right: 24px; }
-.toggle-off.:global(btn) { padding-left: 24px; }
+.toggle.btn { min-width: 59px; min-height: 34px; }
+.toggle-on.btn { padding-right: 24px; }
+.toggle-off.btn { padding-left: 24px; }
 
-.toggle.:global(btn-lg) { min-width: 79px; min-height: 45px; }
-.toggle-on.:global(btn-lg) { padding-right: 31px; }
-.toggle-off.:global(btn-lg) { padding-left: 31px; }
-.toggle-handle.:global(btn-lg) { width: 40px; }
+.toggle.btn-lg { min-width: 79px; min-height: 45px; }
+.toggle-on.btn-lg { padding-right: 31px; }
+.toggle-off.btn-lg { padding-left: 31px; }
+.toggle-handle.btn-lg { width: 40px; }
 
-.toggle.:global(btn-sm) { min-width: 50px; min-height: 30px;}
-.toggle-on.:global(btn-sm) { padding-right: 20px; }
-.toggle-off.:global(btn-sm) { padding-left: 20px; }
+.toggle.btn-sm { min-width: 50px; min-height: 30px;}
+.toggle-on.btn-sm { padding-right: 20px; }
+.toggle-off.btn-sm { padding-left: 20px; }
 
-.toggle.:global(btn-xs) { min-width: 35px; min-height: 22px;}
-.toggle-on.:global(btn-xs) { padding-right: 12px; }
-.toggle-off.:global(btn-xs) { padding-left: 12px; }
+.toggle.btn-xs { min-width: 35px; min-height: 22px;}
+.toggle-on.btn-xs { padding-right: 12px; }
+.toggle-off.btn-xs { padding-left: 12px; }
 

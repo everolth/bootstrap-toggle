@@ -13,7 +13,16 @@
 //getting this as a global import
 
 import React from 'react';
-import styles from '../css/bootstrap-toggle.css';
+//import styles from '../css/bootstrap-toggle.css!';
+let styles = {
+  'toggle': 'toggle',
+  'toggle-group': 'toggle-group',
+  'off': 'off',
+  'toggle-on': 'toggle-on',
+  'toggle-off': 'toggle-off',
+  'toggle-handle': 'toggle-handle'
+};
+
 import classNames from 'classnames';
 import _ from 'lodash';
 // hack assume jquery available globally on the window object
@@ -137,13 +146,13 @@ export default React.createClass({
 
     let labelOnClass = classNames({
       [`btn-${this.props.onstyle}`]: true,
-      [styles['toggle-on']]: true
+      [styles['toggle-on']]: width && height
     },baseObj);
 
     let labelOffClass = classNames({
       [`btn-${this.props.offstyle}`]: true,
       active: true,
-      [styles['toggle-off']]: true
+      [styles['toggle-off']]: width && height
     },baseObj);
 
     let spanClass = classNames({

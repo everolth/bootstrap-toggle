@@ -233,9 +233,9 @@ export default (
         <h3>Animation Speed</h3>
         <p>Transition speed can be easily controlled with css <code>transition</code> property on <code>.toggle-group</code>. You can also turn animation off completely.</p>
         <div className="example">
-          <Toggle groupStyle={{ transition: 'left 0.7s', '-webkit-transition': 'left 0.7s' }}/>
-          <Toggle groupStyle={{ transition: 'left 0.1s', '-webkit-transition': 'left 0.1s' }}/>
-          <Toggle groupStyle={{ transition: 'none', '-webkit-transition': 'none' }}/>
+          <Toggle groupStyle={{ transition: 'left 0.7s', 'WebkitTransition': 'left 0.7s' }}/>
+          <Toggle groupStyle={{ transition: 'left 0.1s', 'WebkitTransition': 'left 0.1s' }}/>
+          <Toggle groupStyle={{ transition: 'none', 'WebkitTransition': 'none' }}/>
         </div>
       </div>
     </main>

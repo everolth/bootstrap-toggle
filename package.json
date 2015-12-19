@@ -26,7 +26,6 @@
   "main": "js/bootstrap-toggle.dist.js",
   "devDependencies": {
     "babel-cli": "^6.3.17",
-    "babel-plugin-css-modules-transform": "0.0.4",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "jspm": "^0.16.14"
@@ -34,7 +33,6 @@
   "jspm": {
     "dependencies": {
       "classnames": "npm:classnames@^2.2.1",
-      "css": "npm:jspm-loader-css-modules@^1.0.0",
       "lodash": "npm:lodash@^3.10.1",
       "react": "npm:react@^0.14.3",
       "react-dom": "npm:react-dom@^0.14.3"
