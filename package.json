@@ -1,7 +1,7 @@
 {
   "name": "bootstrap-toggle-react",
   "description": "Bootstrap Toggle is a react component providing a toggle, based on www.bootstraptoggle.com",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "keywords": [
     "bootstrap",
     "toggle",
@@ -30,6 +30,11 @@
     "babel-preset-react": "^6.3.13",
     "jspm": "^0.16.14"
   },
+  "peerDependencies": {
+    "classnames": "^2.2.1",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  },
   "jspm": {
     "dependencies": {
       "classnames": "npm:classnames@^2.2.1",
@@ -44,9 +49,6 @@
     }
   },
   "dependencies": {
-    "classnames": "^2.2.1",
-    "lodash": "^3.10.1",
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "lodash": "^3.10.1"
   }
 }
